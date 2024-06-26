@@ -28,7 +28,7 @@ export default function HomeScreen() {
     const styles = getStyles(isDarkMode);
 
     return(
-        <SafeAreaView>
+        <SafeAreaView style={styles.safeArea}>
             <StatusBar barStyle={isDarkMode? 'light-content' : 'default'} />
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 <View style = {styles.container}>
@@ -142,6 +142,7 @@ export default function HomeScreen() {
 const getStyles = (isDarkMode) => StyleSheet.create({
     safeArea: {
         flex: 1,
+        backgroundColor: isDarkMode ? '#000016' : '#fff',
     },
 
     container: {
