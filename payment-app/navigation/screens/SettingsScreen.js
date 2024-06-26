@@ -10,7 +10,7 @@ export default function SettingsScreen({navigation}) {
     const { theme, toggleTheme } = useTheme();
     const isDarkMode = theme === 'dark';
 
-    const [isOn, setisOn] = useState(true);
+    const [isOn, setisOn] = useState(false);
 
     function toggleSwitch(){
         setisOn(isOn => !isOn);
@@ -81,8 +81,8 @@ export default function SettingsScreen({navigation}) {
                     style = {[
                         styles.outer,
                         isOn
-                            ? {justifyContent:'flex-end',backgroundColor:"black"}
-                            : {justifyContent:'flex-start',backgroundColor:"gray"}
+                            ? {justifyContent:'flex-end',backgroundColor:"white"}
+                            : {justifyContent:'flex-start',backgroundColor:"black"}
                             ]}
                         activeOpacity={1}
                         onPress={toggleSwitch}>
@@ -95,91 +95,6 @@ export default function SettingsScreen({navigation}) {
     );   
 };
 
-const styles = StyleSheet.create({
-    container: {
-        
-    },
-
-    //Used to center the Setting Text
-    centeredview:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 60,
-        
-    },
-
-    //The Midddle part of the Page 
-    middleview:{
-        marginTop:50,
-    },
-
-    //The Setting Text Style 
-    settingtxt:{
-        fontWeight: '500',
-        fontSize: 25,
-    },
-
-    //The view of each horizontal view arter the setting heading
-    horizontalview:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 20,
-    },
-
-    //Styling of each title eg.language, my profile and the others.
-    titletxt:{
-        fontWeight: '500',
-        fontSize: 20,
-    },
-
-    //The line below each horizontal section
-    horizontalline:{
-        height: 1,
-        backgroundColor: '#ccc',
-        marginVertical: 20,
-        marginHorizontal:20,
-    },
-    
-    //The view that hold the Theme text and toggle and toggle 
-    themebtnview:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        marginHorizontal:20,
-        marginTop:40,
-        alignItems:'center'
-    },
-
-    //Then theme text 
-    themetxt:{
-       fontSize: 30,
-       fontWeight: '600',
-    },
-
-    //The outer on the Toggle button - The background
-    outer: {
-        width: 60,
-        height: 30,
-        borderRadius: 18,
-        elevation:8,
-        shadowOffset: {width: 0, height:0},
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        backgroundColor: 'gray',
-        paddingHorizontal: 5,
-        paddingVertical:18,
-        alignItems:'center',
-        flexDirection:'row',  
-    },
-
-    //The small circle of teh toogle
-    inner: {
-        width: 28,
-        height: 28,
-        borderRadius: 15,
-        backgroundColor: 'white',
-    },
-    
-})
 
 const getStyles = (isDarkMode) => StyleSheet.create({
     safeArea: {
@@ -190,35 +105,49 @@ const getStyles = (isDarkMode) => StyleSheet.create({
         backgroundColor: isDarkMode ? '#000016' : '#fff',
         
     },
+
+    //Used to center the Setting Text
     centeredview: {
         alignItems: 'center',
         justifyContent: 'center',
         height: 60,
     },
+
+    //The Midddle part of the Page 
     settingtxt: {
         fontWeight: '500',
         fontSize: 25,
         color: isDarkMode ? '#fff' : '#000',
     },
+
+    //The Midddle part of the Page 
     middleview: {
         marginTop: 50,
     },
+    
+    //The view of each horizontal view arter the setting heading
     horizontalview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 20,
     },
+
+    //Styling of each title eg.language, my profile and the others.
     titletxt: {
         fontWeight: '500',
         fontSize: 20,
         color: isDarkMode ? '#fff' : '#000',
     },
+
+    //The line below each horizontal section
     horizontalline: {
         height: 1,
         backgroundColor: isDarkMode ? '#333' : '#ccc',
         marginVertical: 20,
         marginHorizontal: 20,
     },
+
+    //The view that hold the Theme text and toggle and toggle
     themebtnview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -226,11 +155,15 @@ const getStyles = (isDarkMode) => StyleSheet.create({
         marginTop: 40,
         alignItems: 'center',
     },
+
+    //Then theme text 
     themetxt: {
         fontSize: 30,
         fontWeight: '600',
         color: isDarkMode ? '#fff' : '#000',
     },
+
+    //The outer on the Toggle button - The background
     outer: {
         width: 60,
         height: 30,
@@ -239,16 +172,17 @@ const getStyles = (isDarkMode) => StyleSheet.create({
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.2,
         shadowRadius: 2,
-        backgroundColor: 'gray',
         paddingHorizontal: 5,
         paddingVertical: 18,
         alignItems: 'center',
         flexDirection: 'row',
     },
+
+    // The small circle in the toggle
     inner: {
         width: 28,
         height: 28,
         borderRadius: 15,
-        backgroundColor: 'white',
+        backgroundColor: isDarkMode? 'black': 'white',
     },
 });

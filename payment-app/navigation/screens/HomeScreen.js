@@ -217,8 +217,7 @@ const getStyles = (isDarkMode) => StyleSheet.create({
     },
     seealltxt:{
         fontSize: 16,
-        color:'blue',
-        color: isDarkMode ? '#fff' : '#000',
+        color: isDarkMode ? '#7ebde9' : 'blue',
     },
     scrollViewContent:{
         marginBottom: 300,
