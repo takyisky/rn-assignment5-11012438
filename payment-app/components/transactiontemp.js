@@ -1,13 +1,29 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //Component for a transaction history so we will just pass in the props on the home screen
-const TransactionTemp = ({category, amount, title, logo}) => {
+const TransactionTemp = ({category, amount, title, logo, iconColor}) => {
+
+    const { theme, toggleTheme } = useTheme();
+    const isDarkMode = theme === 'dark';
+
+    const [isOn, setisOn] = useState(true);
+
+    function toggleSwitch(){
+        setisOn(isOn => !isOn);
+        toggleTheme();
+    }
+
+    const styles = getStyles(isDarkMode);
+
     return (
             <View style={styles.container}>
                 <View style={styles.imageandtitlecontainer}>
                     <View style={styles.logobaground}>
-                        <Image source={logo} style={styles.logo} />
+                        <Ionicons name={logo} size={24} color={iconColor} style={styles.logo} />
                     </View>
                     
                     <View style={styles.textcontainer}>
@@ -25,7 +41,7 @@ const TransactionTemp = ({category, amount, title, logo}) => {
 
 export default TransactionTemp;
 
-const styles = StyleSheet.create ({
+const getStyles = (isDarkMode) => StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -41,7 +57,7 @@ const styles = StyleSheet.create ({
         width:60,
         height:60,
         borderRadius:50,
-        backgroundColor:'#E5E4E2',
+        backgroundColor: isDarkMode ? '#232323' : '#E5E4E2',
         justifyContent:'center',
         alignItems:'center',
     },
@@ -54,9 +70,14 @@ const styles = StyleSheet.create ({
     title:{
         fontSize:18,
         fontWeight:'bold',
+        color:isDarkMode?'white':'black',
     },
     amount:{
         fontWeight:'bold',
+        color:isDarkMode?'white':'black',
+    },
+    category:{
+        color:isDarkMode?'white':'black',
     },
 
 });

@@ -1,30 +1,36 @@
 import * as React from 'react';
 import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
+import { useState } from 'react';
 import profileImage from '../../assets/profile.png';
 import searchIcon from '../../assets/search.png';
 import cardimage from '../../assets/Card.png';
-import senticon from '../../assets/send.png';
-import recievedicon from '../../assets/recieve.png';
-import loanicon from '../../assets/loan.png';
-import topupicon from '../../assets/topUp.png';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-//Transaction assets
-import applelogo from '../../assets/apple.png';
-import spotifylogo from '../../assets/spotify.png';
-import moneytransfericon from '../../assets/moneyTransfer.png';
-import groceryicon from '../../assets/grocery.png';
 
 //Components
 import ActionButton from '../../components/actionbutton';
 import TransactionTemp from '../../components/transactiontemp';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function HomeScreen() {
+
+    const { theme, toggleTheme } = useTheme();
+    const isDarkMode = theme === 'dark';
+
+    const [isOn, setisOn] = useState(true);
+
+    function toggleSwitch(){
+        setisOn(isOn => !isOn);
+        toggleTheme();
+    }
+
+    const styles = getStyles(isDarkMode);
+
     return(
         <SafeAreaView>
             <View style = {styles.container}>
 
-            
                 {/* Welcome back side  */}
                 <View style = {styles.welcomebacksectioncontainer}>
                     
@@ -39,7 +45,8 @@ export default function HomeScreen() {
                         
                     </View>
                     <View style = {styles.iconbaground}>
-                        <Image style = {styles.searchicon} source={searchIcon}></Image>
+                        <Ionicons name='search' size={24} color={isDarkMode? 'white' : 'black'} />
+
                     </View>
                     
 
@@ -55,10 +62,10 @@ export default function HomeScreen() {
                     {/* I have the inner one so that i can add the padding  */}
                     <View style={styles.sentandrecievedcontainer}>
                         {/* Takes data from the action button and renders it here. Important for code simplification */}
-                        <ActionButton label="Sent" icon={senticon}/>
-                        <ActionButton label="Recieve" icon={recievedicon}/>   
-                        <ActionButton label="Loan" icon={loanicon}/>   
-                        <ActionButton label="Topup" icon={topupicon}/>                       
+                        <ActionButton label="Sent" icon='arrow-down' iconColor={isDarkMode ? 'white' : 'black'} />
+                        <ActionButton label="Recieved" icon= 'arrow-up' iconColor={isDarkMode ? 'white' : 'black'} />   
+                        <ActionButton label="Loan" icon= 'logo-usd' iconColor={isDarkMode ? 'white' : 'black'} />   
+                        <ActionButton label="Topup" icon='cloud-upload' iconColor={isDarkMode ? 'white' : 'black'} />                       
                     
                     </View>
                 </View>
@@ -79,40 +86,46 @@ export default function HomeScreen() {
                             <TransactionTemp
                                 title="Apple Store"
                                 category='Entertainment'
-                                logo={applelogo}
+                                logo= 'logo-apple'
                                 amount = '-$5,99'
+                                iconColor={isDarkMode ? 'white' : 'black'}
                             />
 
                             {/* Prop 2 */}
                             <TransactionTemp
-                                title="Spotify"
-                                category='Music'
-                                logo={spotifylogo}
+                                title="Github"
+                                category='Technology'
+                                logo= 'logo-github'
                                 amount = '-$12.99'
+                                iconColor={isDarkMode ? 'white' : 'black'}
+
                             />
 
                             {/* Prop 3 */}
                             <TransactionTemp
                                 title="Money Transfer"
                                 category='Transaction'
-                                logo={moneytransfericon}
+                                logo='enter'
                                 amount = '$300'
+                                iconColor={isDarkMode ? 'white' : 'black'}
                             />
                             
                             {/* Prop 4 */}
                             <TransactionTemp
                                 title="Grocery"
                                 category='Food'
-                                logo={groceryicon}
+                                logo='pricetag'
                                 amount = '-$88'
+                                iconColor={isDarkMode ? 'white' : 'black'}
                             />
 
                             {/* Prop 5 */}
                             <TransactionTemp
-                                title="jjjjj"
-                                category='blogs'
-                                logo={applelogo}
+                                title="Twitch"
+                                category='Steaming'
+                                logo='logo-twitch'
                                 amount = '-$11'
+                                iconColor={isDarkMode ? 'white' : 'black'}
                             />
                         </View>
                     </View>
@@ -122,11 +135,16 @@ export default function HomeScreen() {
     );   
 };
 
-const styles = StyleSheet.create({
-    
+
+const getStyles = (isDarkMode) => StyleSheet.create({
+    safeArea: {
+        flex: 1,
+    },
+
     container: {
         paddingHorizontal:30,
         paddingTop :20,
+        backgroundColor: isDarkMode ? '#000016' : '#fff',
     },
     welcomebacksectioncontainer: {
         flexDirection: 'row',
@@ -144,16 +162,18 @@ const styles = StyleSheet.create({
     },
 
     welcomebacktextview: {
-        marginLeft: 20,
+        marginLeft: 20,  
     },
     welcomebcktext:{
         fontSize: 18,
         marginBottom: 5,
+        color: isDarkMode ? '#fff' : '#000',
 
     },
     welcomebckusername:{
         fontSize: 19,
         fontWeight: 'bold',
+        color: isDarkMode ? '#fff' : '#000',
     },
     searchicon:{
         width: 30,
@@ -162,9 +182,9 @@ const styles = StyleSheet.create({
         width:60,
         height:60,
         borderRadius:50,
-        backgroundColor:'#E5E4E2',
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor: isDarkMode ? '#232323' : '#E5E4E2',
     },
     cardimageview:{
         marginTop: 30,
@@ -193,14 +213,15 @@ const styles = StyleSheet.create({
     transactiontxt:{
         fontWeight: '900',
         fontSize: 18,
+        color: isDarkMode ? '#fff' : '#000',
     },
     seealltxt:{
         fontSize: 16,
         color:'blue',
+        color: isDarkMode ? '#fff' : '#000',
     },
     scrollViewContent:{
         marginBottom: 300,
         paddingBottom:300,
     },
-
-});
+})

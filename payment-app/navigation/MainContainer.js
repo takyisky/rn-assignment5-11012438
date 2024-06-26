@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useTheme } from '../context/ThemeContext';
 
 
 //So we do this with the idea of creating our main cotainer.
@@ -23,8 +24,12 @@ const statisticsName = 'Statistics';
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer (){
+
+    const { theme } = useTheme();
+    const isDarkMode = theme === 'dark';
+
     return(
-        <NavigationContainer >
+        <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme} >
             <Tab.Navigator 
             initialRouteName={homeName}
             screenOptions={({route}) =>  ({
@@ -60,6 +65,8 @@ export default function MainContainer (){
                 //Stling the whole tab bar.
                 tabBarStyle: {
                     padding: 10, height:100,
+                    
+                    backgroundColor: isDarkMode ? '#000020' : '#fff',
                 },
                 
                 headerShown:false,

@@ -1,9 +1,12 @@
 import * as React from 'react';
 import MainContainer from './navigation/MainContainer'; 
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <MainContainer />
+    <ThemeProvider>
+      <MainContainer />
+    </ThemeProvider>
   );
 }  
 
