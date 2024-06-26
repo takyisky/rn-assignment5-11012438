@@ -1,7 +1,7 @@
 # Payment App
 
 ## Description
-This is a React Native application for the DCIT202 MOBILE APPLICATION DEVELOPMENT Assignment 5. This is the react native design copied from the UI provided. The application includes a bottom tab navigation with Home and Settings screens, and a feature to switch between light and dark themes which can be found in the Settings Screen.
+This React Native application was developed for Assignment 5 of DCIT202 Mobile Application Development. The design closely follows the provided UI specifications. Key features include a bottom tab navigation with Home and Settings screens, alongside a theme toggle functionality allowing users to switch between light and dark modes accessible from the Settings Screen.
 
 ## Screenshots
 ![IMG_0265](https://github.com/takyisky/rn-assignment5-11012438/assets/150862905/8e0b7c01-7f8f-4b8d-8817-64e7d5a05dc8)
