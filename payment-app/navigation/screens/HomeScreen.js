@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, Image, ScrollView, StatusBar } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { useState } from 'react';
 import profileImage from '../../assets/profile.png';
@@ -29,108 +29,111 @@ export default function HomeScreen() {
 
     return(
         <SafeAreaView>
-            <View style = {styles.container}>
+            <StatusBar barStyle={isDarkMode? 'light-content' : 'default'} />
+            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <View style = {styles.container}>
 
-                {/* Welcome back side  */}
-                <View style = {styles.welcomebacksectioncontainer}>
-                    
+                    {/* Welcome back side  */}
+                    <View style = {styles.welcomebacksectioncontainer}>
+                        
 
-                    <View style = {styles.profileandtextview}>
-                        <Image style = {styles.userimage} source={profileImage}></Image>
+                        <View style = {styles.profileandtextview}>
+                            <Image style = {styles.userimage} source={profileImage}></Image>
 
-                        <View style = {styles.welcomebacktextview} >
-                            <Text style = {styles.welcomebcktext}>Welcome back!</Text>
-                            <Text style = {styles.welcomebckusername}>Eric Atsu</Text>
+                            <View style = {styles.welcomebacktextview} >
+                                <Text style = {styles.welcomebcktext}>Welcome back!</Text>
+                                <Text style = {styles.welcomebckusername}>Eric Atsu</Text>
+                            </View>
+                            
+                        </View>
+                        <View style = {styles.iconbaground}>
+                            <Ionicons name='search' size={24} color={isDarkMode? 'white' : 'black'} />
+
                         </View>
                         
-                    </View>
-                    <View style = {styles.iconbaground}>
-                        <Ionicons name='search' size={24} color={isDarkMode? 'white' : 'black'} />
 
                     </View>
-                    
 
-                </View>
-
-                {/* Credit card image  */}
-                <View style={styles.cardimageview}>
-                    <Image style={styles.cardimage} source={cardimage}/>
-                </View>
-
-                {/* Sent / recieved buttons section */}
-                <View style={styles.sentrecievedsection}>
-                    {/* I have the inner one so that i can add the padding  */}
-                    <View style={styles.sentandrecievedcontainer}>
-                        {/* Takes data from the action button and renders it here. Important for code simplification */}
-                        <ActionButton label="Sent" icon='arrow-down' iconColor={isDarkMode ? 'white' : 'black'} />
-                        <ActionButton label="Recieved" icon= 'arrow-up' iconColor={isDarkMode ? 'white' : 'black'} />   
-                        <ActionButton label="Loan" icon= 'logo-usd' iconColor={isDarkMode ? 'white' : 'black'} />   
-                        <ActionButton label="Topup" icon='cloud-upload' iconColor={isDarkMode ? 'white' : 'black'} />                       
-                    
+                    {/* Credit card image  */}
+                    <View style={styles.cardimageview}>
+                        <Image style={styles.cardimage} source={cardimage}/>
                     </View>
-                </View>
 
-                <ScrollView contentContainerStyle={styles.scrollViewContent}>
-                    {/* Transactions Section*/}
-                    <View>
-
-                        {/* Transaction and see all component at the top */}
-                        <View style = {styles.transactionandseeallsection}>
-                            <Text style = {styles.transactiontxt}>Transactions</Text>
-                            <Text style = {styles.seealltxt} >See All</Text>
+                    {/* Sent / recieved buttons section */}
+                    <View style={styles.sentrecievedsection}>
+                        {/* I have the inner one so that i can add the padding  */}
+                        <View style={styles.sentandrecievedcontainer}>
+                            {/* Takes data from the action button and renders it here. Important for code simplification */}
+                            <ActionButton label="Sent" icon='arrow-down' iconColor={isDarkMode ? 'white' : 'black'} />
+                            <ActionButton label="Recieved" icon= 'arrow-up' iconColor={isDarkMode ? 'white' : 'black'} />   
+                            <ActionButton label="Loan" icon= 'logo-usd' iconColor={isDarkMode ? 'white' : 'black'} />   
+                            <ActionButton label="Topup" icon='cloud-upload' iconColor={isDarkMode ? 'white' : 'black'} />                       
+                        
                         </View>
+                    </View>
 
-                        {/* Cards Below */}
+                    
+                        {/* Transactions Section*/}
                         <View>
-                            {/* Prop will go here */}
-                            <TransactionTemp
-                                title="Apple Store"
-                                category='Entertainment'
-                                logo= 'logo-apple'
-                                amount = '-$5,99'
-                                iconColor={isDarkMode ? 'white' : 'black'}
-                            />
 
-                            {/* Prop 2 */}
-                            <TransactionTemp
-                                title="Github"
-                                category='Technology'
-                                logo= 'logo-github'
-                                amount = '-$12.99'
-                                iconColor={isDarkMode ? 'white' : 'black'}
+                            {/* Transaction and see all component at the top */}
+                            <View style = {styles.transactionandseeallsection}>
+                                <Text style = {styles.transactiontxt}>Transactions</Text>
+                                <Text style = {styles.seealltxt} >See All</Text>
+                            </View>
 
-                            />
+                            {/* Cards Below */}
+                            <View>
+                                {/* Prop will go here */}
+                                <TransactionTemp
+                                    title="Apple Store"
+                                    category='Entertainment'
+                                    logo= 'logo-apple'
+                                    amount = '-$5,99'
+                                    iconColor={isDarkMode ? 'white' : 'black'}
+                                />
 
-                            {/* Prop 3 */}
-                            <TransactionTemp
-                                title="Money Transfer"
-                                category='Transaction'
-                                logo='enter'
-                                amount = '$300'
-                                iconColor={isDarkMode ? 'white' : 'black'}
-                            />
-                            
-                            {/* Prop 4 */}
-                            <TransactionTemp
-                                title="Grocery"
-                                category='Food'
-                                logo='pricetag'
-                                amount = '-$88'
-                                iconColor={isDarkMode ? 'white' : 'black'}
-                            />
+                                {/* Prop 2 */}
+                                <TransactionTemp
+                                    title="Github"
+                                    category='Technology'
+                                    logo= 'logo-github'
+                                    amount = '-$12.99'
+                                    iconColor={isDarkMode ? 'white' : 'black'}
 
-                            {/* Prop 5 */}
-                            <TransactionTemp
-                                title="Twitch"
-                                category='Steaming'
-                                logo='logo-twitch'
-                                amount = '-$11'
-                                iconColor={isDarkMode ? 'white' : 'black'}
-                            />
+                                />
+
+                                {/* Prop 3 */}
+                                <TransactionTemp
+                                    title="Money Transfer"
+                                    category='Transaction'
+                                    logo='enter'
+                                    amount = '$300'
+                                    iconColor={isDarkMode ? 'white' : 'black'}
+                                />
+                                
+                                {/* Prop 4 */}
+                                <TransactionTemp
+                                    title="Grocery"
+                                    category='Food'
+                                    logo='pricetag'
+                                    amount = '-$88'
+                                    iconColor={isDarkMode ? 'white' : 'black'}
+                                />
+
+                                {/* Prop 5 */}
+                                <TransactionTemp
+                                    title="Twitch"
+                                    category='Steaming'
+                                    logo='logo-twitch'
+                                    amount = '-$11'
+                                    iconColor={isDarkMode ? 'white' : 'black'}
+                                    style = {{paddingBottom:50,}}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>        
     );   
 };
@@ -145,6 +148,7 @@ const getStyles = (isDarkMode) => StyleSheet.create({
         paddingHorizontal:30,
         paddingTop :20,
         backgroundColor: isDarkMode ? '#000016' : '#fff',
+        paddingBottom: 20,
     },
     welcomebacksectioncontainer: {
         flexDirection: 'row',
@@ -218,9 +222,5 @@ const getStyles = (isDarkMode) => StyleSheet.create({
     seealltxt:{
         fontSize: 16,
         color: isDarkMode ? '#7ebde9' : 'blue',
-    },
-    scrollViewContent:{
-        marginBottom: 300,
-        paddingBottom:300,
     },
 })

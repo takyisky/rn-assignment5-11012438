@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Text, SafeAreaView, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -23,6 +23,8 @@ export default function SettingsScreen({navigation}) {
 
     return(
         <SafeAreaView style={styles.safeArea} >
+        <StatusBar barStyle={isDarkMode? 'light-content' : 'default'} />
+
         <View style={styles.container}>
             {/* Top View */}
             <View style = {styles.centeredview}>
